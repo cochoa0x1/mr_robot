@@ -28,7 +28,7 @@ def read_ultrasonic():
 	return float(v.strip('\r\n'))
 
 
-def test_loop(t,V,K):
+def test_loop(t,V,VT,K):
 
 	while(1):
 		time.sleep(t)
@@ -36,10 +36,10 @@ def test_loop(t,V,K):
 			v = read_ultrasonic()
 			print 'ultrasonic: ', v
 
-			if v <  K:
+			if v >  K:
 				update_motors(V,V)
 			else:
-				update_motors(V,-1*V)
+				update_motors(VT,-1*VT)
 
 		except:
 			print 'error'
