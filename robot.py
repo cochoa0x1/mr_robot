@@ -31,17 +31,18 @@ def read_ultrasonic():
 def test_loop(t):
 
 	while(1):
+		time.sleep(t)
 		try:
 			v = read_ultrasonic()
 			print 'ultrasonic: ', v
 
-			if v < 10.0:
-				update_motors(100,100)
+			if v <  50:
+				update_motors(90,90)
 			else:
-				update_motors(-50,100)
+				update_motors(90,-90)
 
 		except:
 			print 'error'
 
-		time.sleep(t)
+		
 

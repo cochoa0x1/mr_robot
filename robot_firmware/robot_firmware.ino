@@ -14,12 +14,15 @@
 unsigned long time;
 unsigned long sensor_time;
 
-struct motorPacket {
+struct __attribute__ ((packed)) motorPacket {
   bool left_positive;
-  int speed_left;
+  uint8_t speed_left;
   bool right_positive;
-  int speed_right;
+  uint8_t speed_right;
 };
+
+
+
 
 
 void setup() {
@@ -31,6 +34,11 @@ void setup() {
   pinMode(speed_l,OUTPUT);
   pinMode(fwd_l,OUTPUT);
   pinMode(rev_l,OUTPUT);
+
+  //right motor
+  pinMode(speed_r,OUTPUT);
+  pinMode(fwd_r,OUTPUT);
+  pinMode(rev_r,OUTPUT);
   
   Serial.begin(115200);
 
@@ -65,16 +73,19 @@ void loop() {
   }
 //
 //   //read the ultrasonic
+
 if(millis() - sensor_time > 50){
     double d = echo_read(echo_pin, echo_trigger_pin);
     Serial.println(d);
     sensor_time = millis();
  }
 
+
      
   if(Serial.available() >= 5){
     
     char cmd = Serial.read();
+
 
     if (cmd == 'M'){
 
@@ -88,21 +99,22 @@ if(millis() - sensor_time > 50){
       for(int i =0; i< len; i++){
         buff[i] = Serial.read();
       }
-      
+
+
       memcpy(&m,&buff,len);
 
       Serial.flush();
 
       analogWrite(speed_l, m.speed_left);
-       analogWrite(speed_r, m.speed_right);
+      analogWrite(speed_r, m.speed_right);
 
-      if( m.left_positive){
+      if( m.left_positive == true ){
         digitalWrite(fwd_l,HIGH);
       }else{
         digitalWrite(rev_l,HIGH);
       }
 
-      if( m.right_positive){
+      if( m.right_positive == true){
         digitalWrite(fwd_r,HIGH);
       }else{
         digitalWrite(rev_r,HIGH);
