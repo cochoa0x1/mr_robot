@@ -14,7 +14,7 @@
 * ultrasonic sensor [amazon](https://www.amazon.com/gp/product/B004U8TOE6/ref=oh_aui_search_detailpage?ie=UTF8&psc=1)
 
 ### Design 
-I wanted the electronics to be isolated from whichever computer was doing the logic and sensing. Rather than drive the motor controller directly from the raspbery pi, I used an arduino with a serial USB interface to handle the electronics. My thought process at the time was to be able to plut in any computer ranging from the pi to a laptop or the Jetson TK1 I have laying around. 
+I wanted the electronics to be isolated from whichever computer was doing the logic and sensing. Rather than drive the motor controller directly from the raspbery pi, I used an arduino with a serial USB interface to handle the electronics. My thought process at the time was to be able to plug in any computer ranging from the pi to a laptop or the Jetson TK1 I have laying around. 
 
 The arduino talks to the pi by sending controll packets over serial. This packet includes the speed and direction to set the left and right wheels.
 
