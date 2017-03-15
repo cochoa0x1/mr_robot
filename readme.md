@@ -3,7 +3,7 @@
 
 ![alt text](./images/robot.jpg "mr roboto") 
 
-### parts
+### Parts
 * chassis and motors: [amazon](https://www.amazon.com/gp/product/B01BXPETQG/ref=oh_aui_search_detailpage?ie=UTF8&psc=1)
 
 * motor controller: [L298N](https://www.amazon.com/gp/product/B014KMHSW6/ref=oh_aui_search_detailpage?ie=UTF8&psc=1)
